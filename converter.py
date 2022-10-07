@@ -33,10 +33,10 @@ class SlackToHTMLConverter():
             # 各月のログを変換。
             for month in messages:
                 with (Path(out_dir) / i / f"{month}.html").open("w") as f:
-                    f.write(self._render_monthly_messages(messages[month]))
+                    f.write(self._render_messages(messages[month]))
                 FileDownloader.download_files(out_dir, messages[month])
 
-    def _render_monthly_messages(self, messages: dict):
+    def _render_messages(self, messages: dict):
         loader = jinja2.FileSystemLoader("./templates")
         env = jinja2.Environment(loader=loader)
         template = env.get_template("monthly_messages.j2")
