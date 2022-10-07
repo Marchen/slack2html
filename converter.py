@@ -21,6 +21,7 @@ class SlackToHTMLConverter():
 
     def convert(self, out_dir: Union[Path, str]) -> None:
         out_dir = Path(out_dir)
+        out_dir.mkdir(exist_ok=True, parents=True)
         # Copy CSS.
         shutil.copy(
             "./templates/styles.css", str(Path(out_dir) / "styles.css")
