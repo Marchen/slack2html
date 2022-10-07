@@ -1,0 +1,14 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <h1>All logs</h1>
+        <ul>
+            {% for month in months %}
+                <li><a href="{{month}}.html">{{month}}</a></li>
+            {% endfor %}
+        </ul>
+    </body>
+</html>
