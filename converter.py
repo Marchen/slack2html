@@ -1,7 +1,6 @@
 #%%
 import itertools
 from pathlib import Path
-import re
 import shutil
 from typing import List, Union
 
@@ -22,36 +21,24 @@ class SlackToHTMLConverter():
 
     def convert(self, out_dir: Union[Path, str]) -> None:
         out_dir = Path(out_dir)
+        # Copy CSS.
+        shutil.copy(
+            "./templates/styles.css", str(Path(out_dir) / "styles.css")
+        )
         for i in self.channels.names:
-            # 出力先ディレクトリを作成
-            (out_dir / i).mkdir(exist_ok=True, parents=True)
             messages = self._read_channel_messages(i)
-            # CSSをコピー
-            shutil.copy(
-                "./templates/styles.css", str(Path(out_dir) / i / "styles.css")
-            )
-            # 各月のログを変換。
-            for month in messages:
-                with (Path(out_dir) / i / f"{month}.html").open("w") as f:
-                    f.write(self._render_messages(messages[month]))
-                FileDownloader.download_files(out_dir, messages[month])
+            formatted_messages = MessageFormatter.format(messages, self.users)
+            with (Path(out_dir) / f"{i}.html").open("w") as f:
+                f.write(self._render_messages(formatted_messages))
+            FileDownloader.download_files(out_dir, formatted_messages)
 
     def _render_messages(self, messages: dict):
         loader = jinja2.FileSystemLoader("./templates")
         env = jinja2.Environment(loader=loader)
-        template = env.get_template("monthly_messages.j2")
+        template = env.get_template("channel.j2")
         output = template.render(messages = messages)
         return output
 
     def _read_channel_messages(self, name: str) -> List[dict]:
         messages = self.channels[name].messages
-        monthly_messages = {
-            k: list(itertools.chain.from_iterable([i[1] for i in v]))
-            for k, v in itertools.groupby(
-                messages.items(), lambda x: re.sub("-[0-9]{2}$", "", x[0])
-            )
-        }
-        return {
-            k: MessageFormatter.format(v, self.users)
-            for k, v in monthly_messages.items()
-        }
+        return list(itertools.chain.from_iterable(messages.values()))
