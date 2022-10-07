@@ -24,7 +24,7 @@ conda install jinja2
 python slack2html.py log_directory output_directory
 ```
 
-where `log_directory` is the path to the slack log directory (the directory contains `channel.json`) and `output_directory` is the path to the output directory.
+where `log_directory` is the path to the slack log directory (the directory contains `channels.json`) and `output_directory` is the path to the output directory.
 
 -------------------------------------------------------------------------------
 
@@ -48,4 +48,4 @@ conda install jinja2
 python slack2html.py log_directory output_directory
 ```
 
-`log_directory`は`channel.json`ファイルがあるSlackのログのディレクトリのパス、 `output_directory`は出力先のディレクトリのパスです。
+`log_directory`は`channels.json`ファイルがあるSlackのログのディレクトリのパス、 `output_directory`は出力先のディレクトリのパスです。
