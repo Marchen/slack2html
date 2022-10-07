@@ -66,7 +66,7 @@ class MessageFormatter():
                 files.append({
                     "id": f["id"],
                     "name": f["name"],
-                    "url": f"../files/{f['id']}/{f['name']}",
+                    "url": f"files/{f['id']}/{f['name']}",
                     "url_private_download": self._find_file_url(f)
                 })
         return files
