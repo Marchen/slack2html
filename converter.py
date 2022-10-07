@@ -51,4 +51,7 @@ class SlackToHTMLConverter():
                 messages.items(), lambda x: re.sub("-[0-9]{2}$", "", x[0])
             )
         }
-        return MessageFormatter.format(monthly_messages, self.users)
+        return {
+            k: MessageFormatter.format(v, self.users)
+            for k, v in monthly_messages.items()
+        }

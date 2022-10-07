@@ -9,25 +9,23 @@ class MessageFormatter():
 
     @classmethod
     def format(
-        cls, monthly_messages: Dict[str, List[dict]], users: Users
+        cls, messages: Dict[str, List[dict]], users: Users
     ) -> List[dict]:
-        return cls._format_messages_for_html(cls(), monthly_messages, users)
+        return cls._format_messages_for_html(cls(), messages, users)
 
     def _format_messages_for_html(
         self, messages: List[dict], users: Users
     ) -> List[dict]:
-        result = {}
-        for month in messages:
-            result[month] = [
-                {
-                    "text": self._format_text(m["text"], users),
-                    "user": users.find_user_name(m["user"]),
-                    "ts": self._format_date(m["ts"]),
-                    "files": self._format_files(m)
-                }
-                for m in messages[month]
-            ]
-        return result
+        return [
+            {
+                "text": self._format_text(m["text"], users),
+                "user": users.find_user_name(m["user"]),
+                "ts": self._format_date(m["ts"]),
+                "files": self._format_files(m)
+            }
+            for m in messages
+        ]
+
 
     def _format_text(self, text: str, users: Users) -> str:
         text = self._format_user_name(text, users)
