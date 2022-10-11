@@ -13,7 +13,7 @@ class Users:
 
     #--------------------------------------------------------------------------
     def _load(self) -> None:
-        with (self.log_dir / "users.json").open() as f:
+        with (self.log_dir / "users.json").open(encoding="utf_8") as f:
             self.users = json.load(f)
 
     def find_user_name(self, id_: str) -> str:

@@ -11,7 +11,7 @@ class LogFile():
 
     #--------------------------------------------------------------------------
     def _load(self) -> None:
-        with self.log_file_path.open() as f:
+        with self.log_file_path.open(encoding="utf_8") as f:
             self.messages = json.load(f)
 
     @property

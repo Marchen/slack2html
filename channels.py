@@ -85,7 +85,7 @@ class Channels():
 
     #--------------------------------------------------------------------------
     def _load(self) -> None:
-        with (self.log_dir / "channels.json").open() as f:
+        with (self.log_dir / "channels.json").open(encoding="utf_8") as f:
             self.channels = json.load(f)
 
     #--------------------------------------------------------------------------
