@@ -4,18 +4,18 @@
 
 ## Install
 
-slack2html depends `jinja2`. Please install `jinja2` first.
+slack2html depends `requests` and `jinja2`. Please install them first.
 
 e.g.,
 
 ```sh
-pip install jinja2
+pip install jinja2 requests
 ```
 
 or
 
 ```sh
-conda install jinja2
+conda install jinja2 requests
 ```
 
 ## Usage
@@ -35,16 +35,16 @@ If a file already exists, *slack2html* skips to download the file therefore usin
 
 ## インストール
 
-slack2htmlは`jinja2`に依存しているので、まず`jinja2`をインストールしてください。
+slack2htmlは`jinja2`と`requests`に依存しているので、まずこれらのパッケージをインストールしてください。
 
 ```sh
-pip install jinja2
+pip install jinja2 requests
 ```
 
 もしくは
 
 ```sh
-conda install jinja2
+conda install jinja2 requests
 ```
 
 ## つかいかた
