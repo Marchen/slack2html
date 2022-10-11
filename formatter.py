@@ -58,7 +58,7 @@ class MessageFormatter():
         for f in message["files"]:
             if f["mode"] == "tombstone":
                 files.append({
-                    "id": f["id"], "name": "このファイルは削除されました。",
+                    "id": f["id"], "name": "This file was deleted",
                     "url": None, "url_private_download": None
                 })
             else:
