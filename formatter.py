@@ -26,7 +26,6 @@ class MessageFormatter():
             for m in messages
         ]
 
-
     def _format_text(self, text: str, users: Users) -> str:
         text = self._format_user_name(text, users)
         text = self._format_page_break(text)
