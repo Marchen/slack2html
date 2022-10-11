@@ -29,7 +29,8 @@ class SlackToHTMLConverter():
         for i in self.channels.names:
             messages = self._read_channel_messages(i)
             formatted_messages = MessageFormatter.format(messages, self.users)
-            with (Path(out_dir) / f"{i}.html").open("w") as f:
+            html_path = Path(out_dir) / f"{i}.html"
+            with html_path.open("w", encoding="utf_8") as f:
                 f.write(self._render_messages(formatted_messages))
             FileDownloader.download_files(out_dir, formatted_messages)
 
