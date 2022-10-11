@@ -85,12 +85,14 @@ class Channels():
 
     #--------------------------------------------------------------------------
     def _load(self) -> None:
+        "Load channel metadata from channels.json."
         with (self.log_dir / "channels.json").open(encoding="utf_8") as f:
             self.channels = json.load(f)
 
     #--------------------------------------------------------------------------
     @property
     def names(self) -> List[str]:
+        "All channel names."
         return [i["name"] for i in self.channels]
 
     def __getitem__(self, name: str):
