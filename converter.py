@@ -10,7 +10,7 @@ from channels import Channels
 from downloader import FileDownloader
 from users import Users
 from formatter import MessageFormatter
-
+from utils import standardize_file_name
 
 class SlackToHTMLConverter():
 
@@ -29,7 +29,7 @@ class SlackToHTMLConverter():
         for i in self.channels.names:
             messages = self._read_channel_messages(i)
             formatted_messages = MessageFormatter.format(messages, self.users)
-            html_path = Path(out_dir) / f"{i}.html"
+            html_path = Path(out_dir) / standardize_file_name(f"{i}.html")
             with html_path.open("w", encoding="utf_8") as f:
                 f.write(self._render_messages(formatted_messages))
             FileDownloader.download_files(out_dir, formatted_messages)
