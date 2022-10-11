@@ -2,6 +2,8 @@
 
 [日本語](#インストール)
 
+`slack2html` converts Slack log to static HTML files.
+
 ## Install
 
 slack2html depends `requests` and `jinja2`. Please install them first.
@@ -32,6 +34,8 @@ where `log_directory` is the path to the slack log directory (the directory cont
 If a file already exists, *slack2html* skips to download the file therefore using the `output_directory` having downloaded files can save downloading time.
 
 -------------------------------------------------------------------------------
+
+`slack2html`はSlackのログを静的なHTMLに変換します。
 
 ## インストール
 
