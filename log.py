@@ -1,6 +1,6 @@
 import json
 from pathlib import Path
-from typing import List, Union
+from typing import Union
 
 
 class LogFile():
@@ -13,7 +13,3 @@ class LogFile():
     def _load(self) -> None:
         with self.log_file_path.open(encoding="utf_8") as f:
             self.messages = json.load(f)
-
-    @property
-    def formatted_messages(self) -> List[dict]:
-        return
